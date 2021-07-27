@@ -20,6 +20,6 @@ app.get('/about', function(req, res) {
 
 
 // LISTEN
-app.listen(process.env.PORT || 80, function(){
+app.listen(process.env.PORT || 8080, function(){
     console.log("Server: Running on port %d in %s mode", this.address().port, app.settings.env);
 });
