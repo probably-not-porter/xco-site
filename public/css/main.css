@@ -13,6 +13,7 @@ html, body{
     padding-top: 30px;
     border: none;
     font-family: 'Rajdhani', sans-serif;
+    z-index: 1;
 }
 .navbar{
     border-radius: 10px;
