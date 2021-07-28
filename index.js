@@ -26,10 +26,14 @@ app.get('/about', function(req, res) {
     })
 });
 
-app.enable('trust proxy')
-app.use((req, res, next) => {
-    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
-})
+function requireHTTPS(req, res, next) {
+    // The 'x-forwarded-proto' check is for Heroku
+    if (!req.secure && req.get('x-forwarded-proto') !== 'https' && process.env.NODE_ENV !== "development") {
+        return res.redirect('https://' + req.get('host') + req.url);
+    }
+    next();
+}
+app.use(requireHTTPS);
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
