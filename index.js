@@ -1,5 +1,20 @@
-const express = require('express');
-const app = express();
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('server.key', 'utf8');
+var certificate = fs.readFileSync('server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var app = express();
+
+var privateKey = fs.readFileSync('sslcert/server.key');
+var certificate = fs.readFileSync('sslcert/server.crt');
+
+var credentials = {key: privateKey, cert: certificate};
+var app = express.createServer(credentials);
+
+
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
@@ -18,20 +33,8 @@ app.get('/about', function(req, res) {
 });
 
 
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
 
-const https = require('https');
-const fs = require('fs');
-
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
-
-https.createServer(options, function (req, res) {
-  res.writeHead(200);
-  res.end("hello world\n");
-}).listen(8000);
-
-app.listen(process.env.PORT || 8080, function(){
-    console.log("Server: Running on port %d in %s mode", this.address().port, app.settings.env);
-});
+httpServer.listen(8080);
+httpsServer.listen(8443);
