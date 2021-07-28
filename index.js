@@ -32,6 +32,6 @@ https.createServer(options, function (req, res) {
   res.end("hello world\n");
 }).listen(8000);
 
-app.listen(process.env.PORT || 8000, function(){
+app.listen(process.env.PORT || 8080, function(){
     console.log("Server: Running on port %d in %s mode", this.address().port, app.settings.env);
 });
