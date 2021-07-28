@@ -26,6 +26,10 @@ app.get('/about', function(req, res) {
     })
 });
 
+app.get('*', function(req, res) {  
+    res.redirect('https://' + req.headers.host + req.url);
+})
+
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
