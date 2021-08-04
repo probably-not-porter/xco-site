@@ -8,17 +8,27 @@
 .section{
     padding: 30px;
     color: white;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.5);
     border-radius: 5px;
     margin-bottom: 20px;
 }
 .section h3{
+    font-size: 25px;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     width: 100%;
     margin-bottom: 20px;
     font-family: 'Rajdhani', sans-serif;
+    display: inline-block;
+}
+.section h4{
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: 'Rajdhani', sans-serif;
+    display: inline;
 }
 .section span{
     width: 100%;
     text-align: justify;
+    color: rgba(255,255,255,0.8);
 }
