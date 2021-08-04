@@ -26,6 +26,11 @@ app.get('/about', function(req, res) {
     })
 });
 
+app.get('/minecraft', function(req, res) {
+    res.render("minecraft",{
+    })
+});
+
 
 var httpServer = http.createServer(app);
 //ar httpsServer = https.createServer(credentials, app);
